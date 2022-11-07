@@ -14,7 +14,11 @@ export default function Form() {
         router.push(`/search?query=${input}`);
       }}
     >
-      <input value={input} onChange={(e) => setInput(e.target.value)} />
+      <input
+        placeholder="Search here"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
     </form>
   );
 }
