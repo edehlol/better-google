@@ -4,18 +4,15 @@ import { Result } from "../../types/result";
 const fetchRedditResults = async (query: string) => {
   const response = await fetch(`https://www.reddit.com/search.json?q=${query}`);
   const json = await response.json();
-  console.log(json);
   return json.data.children as Result[];
 };
 
-interface PageProps {
-  searchParams: {
-    query: string;
-  };
-}
-
-export default async function Search({ searchParams }: PageProps) {
-  const results = await fetchRedditResults(searchParams.query);
+export default async function Search({
+  searchParams,
+}: {
+  searchParams?: { query?: string };
+}) {
+  const results = await fetchRedditResults(searchParams?.query as string);
 
   return (
     <div>
